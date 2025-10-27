@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Hero from "./home/components/Hero";
-import OfferList from "@/components/OfferList";
-import ImageSlider from "@/components/Slider";
-import RunningOffers from "@/components/PercentageCard";
 import ShopByBrands from "./home/components/Brands";
 import CTABanner from "./home/components/CtaBanner";
+import OfferList from "./components/OfferList";
+import ImageSlider from "./components/Slider";
+import RunningOffers from "./components/PercentageCard";
 
 export default function Home() {
   return (

@@ -4,7 +4,6 @@ import Navbar from "./Navbar";
 
 export default function NavbarClient() {
   const pathname = usePathname() || "";
-  // hide global navbar for any route under /agent
-  if (pathname.startsWith("/agent")) return null;
+  if (pathname.startsWith("/dashboard")) return null;
   return <Navbar />;
 }
