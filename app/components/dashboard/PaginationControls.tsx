@@ -15,7 +15,7 @@ const PaginationControls: React.FC<PaginationProps> = ({
   onPageChange,
 }) => {
   return (
-    <div className="flex justify-center items-center gap-3 mt-6">
+    <div className="flex justify-center items-center gap-3 mt-6 relative z-10">
       <Button
         variant="outline"
         disabled={currentPage === 1}

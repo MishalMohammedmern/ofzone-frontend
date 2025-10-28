@@ -2,6 +2,8 @@ export interface Product {
     id: string;
     name: string;
     category: string;
+    subcategory: string;
+    variantCount: number;
     description: string;
 }
 

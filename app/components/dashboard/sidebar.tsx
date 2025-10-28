@@ -13,10 +13,10 @@ import {
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard/agent", icon: Home },
-  { name: "Products", href: "/dashboard/agent/products", icon: Package },
-  { name: "Orders", href: "/dashboard/agent/orders", icon: ShoppingCart },
-  { name: "Customers", href: "/dashboard/agent/customers", icon: Users },
-  { name: "Settings", href: "/dashboard/agent/settings", icon: Settings },
+  { name: "Products", href: "/dashboard/products", icon: Package },
+  { name: "Orders", href: "/dashboard/orders", icon: ShoppingCart },
+  { name: "Customers", href: "/dashboard/customers", icon: Users },
+  { name: "Settings", href: "/dashboard/settings", icon: Settings },
 ];
 
 interface SidebarProps {

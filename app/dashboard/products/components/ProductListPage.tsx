@@ -21,25 +21,26 @@ export default function ProductListPage() {
 
     useEffect(() => {
         const dummyProducts: Product[] = [
-            { id: "1", name: "iPhone 16 Pro", category: "Electronics", description: "Latest model" },
-            { id: "2", name: "MacBook Air M3", category: "Computers", description: "Lightweight laptop" },
-            { id: "3", name: "AirPods Pro 2", category: "Accessories", description: "Noise cancellation" },
-            { id: "4", name: "Apple Watch 10", category: "Wearable", description: "Health tracking" },
-            { id: "5", name: "iPad Pro 13", category: "Tablet", description: "M4 chip" },
-            { id: "6", name: "Vision Pro", category: "VR", description: "Spatial computing" },
-            { id: "7", name: "iPhone 16 Pro 2", category: "Electronics", description: "Latest model" },
-            { id: "8", name: "MacBook Air M3 2", category: "Computers", description: "Lightweight laptop" },
-            { id: "9", name: "AirPods Pro 2 2", category: "Accessories", description: "Noise cancellation" },
-            { id: "10", name: "Apple Watch 10 2", category: "Wearable", description: "Health tracking" },
-            { id: "11", name: "iPad Pro 13 2", category: "Tablet", description: "M4 chip" },
-            { id: "12", name: "Vision Pro 2", category: "VR", description: "Spatial computing" },
-            { id: "13", name: "iPhone 16 Pro 3", category: "Electronics", description: "Latest model" },
-            { id: "14", name: "MacBook Air M3 3", category: "Computers", description: "Lightweight laptop" },
-            { id: "15", name: "AirPods Pro 2 3", category: "Accessories", description: "Noise cancellation" },
-            { id: "16", name: "Apple Watch 10 3", category: "Wearable", description: "Health tracking" },
-            { id: "17", name: "iPad Pro 13 3", category: "Tablet", description: "M4 chip" },
-            { id: "18", name: "Vision Pro 3", category: "VR", description: "Spatial computing" },
+            { id: "1", name: "iPhone 16 Pro", category: "Electronics", subcategory: "Smartphones", description: "Latest model", variantCount: 3 },
+            { id: "2", name: "MacBook Air M3", category: "Computers", subcategory: "Laptops", description: "Lightweight laptop", variantCount: 2 },
+            { id: "3", name: "AirPods Pro 2", category: "Accessories", subcategory: "Audio", description: "Noise cancellation", variantCount: 4 },
+            { id: "4", name: "Apple Watch 10", category: "Wearable", subcategory: "Smartwatches", description: "Health tracking", variantCount: 3 },
+            { id: "5", name: "iPad Pro 13", category: "Tablet", subcategory: "iPads", description: "M4 chip", variantCount: 2 },
+            { id: "6", name: "Vision Pro", category: "VR", subcategory: "Headsets", description: "Spatial computing", variantCount: 1 },
+            { id: "7", name: "iPhone 16 Pro 2", category: "Electronics", subcategory: "Smartphones", description: "Latest model", variantCount: 3 },
+            { id: "8", name: "MacBook Air M3 2", category: "Computers", subcategory: "Laptops", description: "Lightweight laptop", variantCount: 2 },
+            { id: "9", name: "AirPods Pro 2 2", category: "Accessories", subcategory: "Audio", description: "Noise cancellation", variantCount: 4 },
+            { id: "10", name: "Apple Watch 10 2", category: "Wearable", subcategory: "Smartwatches", description: "Health tracking", variantCount: 3 },
+            { id: "11", name: "iPad Pro 13 2", category: "Tablet", subcategory: "iPads", description: "M4 chip", variantCount: 2 },
+            { id: "12", name: "Vision Pro 2", category: "VR", subcategory: "Headsets", description: "Spatial computing", variantCount: 1 },
+            { id: "13", name: "iPhone 16 Pro 3", category: "Electronics", subcategory: "Smartphones", description: "Latest model", variantCount: 3 },
+            { id: "14", name: "MacBook Air M3 3", category: "Computers", subcategory: "Laptops", description: "Lightweight laptop", variantCount: 2 },
+            { id: "15", name: "AirPods Pro 2 3", category: "Accessories", subcategory: "Audio", description: "Noise cancellation", variantCount: 4 },
+            { id: "16", name: "Apple Watch 10 3", category: "Wearable", subcategory: "Smartwatches", description: "Health tracking", variantCount: 3 },
+            { id: "17", name: "iPad Pro 13 3", category: "Tablet", subcategory: "iPads", description: "M4 chip", variantCount: 2 },
+            { id: "18", name: "Vision Pro 3", category: "VR", subcategory: "Headsets", description: "Spatial computing", variantCount: 1 },
         ];
+
 
         setProducts(dummyProducts);
     }, []);
@@ -60,18 +61,9 @@ export default function ProductListPage() {
 
 
     return (
-        <div className="h-[85vh] px-5 overflow-hidden flex flex-col">
+        <div className="h-[87vh] px-5 overflow-hidden flex flex-col bg-gray-100 py-4 rounded-lg shadow-md">
             <div className="mx-auto flex flex-col gap-3 w-full h-full">
-                <div>
-                    <h1 className="text-3xl font-bold text-slate-900">
-                        {viewMode === 'product' ? 'Product List' : 'Product Variants'}
-                    </h1>
-                    <p className="text-slate-600">
-                        {viewMode === 'product'
-                            ? 'Manage and view all your products in one place'
-                            : 'Manage and view all product variants'}
-                    </p>
-                </div>
+
 
                 <div className="flex-1 overflow-hidden">
                     {viewMode === 'product' ? (
