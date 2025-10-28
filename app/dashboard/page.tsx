@@ -6,7 +6,7 @@ import RecentProducts from "./components/RecentProducts";
 
 export default function AgentDashboard() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 bg-gray-100 h-[87vh] p-4 rounded-lg overflow-y-auto">
       <StatsCards />
       
       <div className="grid gap-6 lg:grid-cols-2">

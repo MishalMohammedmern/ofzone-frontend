@@ -1,59 +1,113 @@
 'use client';
-
 import React from 'react';
-import { ChevronDown } from 'lucide-react';
+import { TextField, MenuItem, Button } from '@mui/material';
+import { Filter, X } from 'lucide-react';
 
-interface FilterOption {
-  label: string;
-  value: string;
+interface FilterBarProps {
+    search: string;
+    setSearch: (value: string) => void;
+    category: string;
+    setCategory: (value: string) => void;
+    subcategory: string;
+    setSubcategory: (value: string) => void;
+    sort: string;
+    setSort: (value: string) => void;
+    categories: string[];
+    subcategories: string[];
+    onClear: () => void;
 }
 
-interface FilterComponentProps {
-  label: string;
-  options: FilterOption[];
-  value: string;
-  onChange: (value: string) => void;
-}
-
-export const FilterComponent: React.FC<FilterComponentProps> = ({
-  label,
-  options,
-  value,
-  onChange,
+const FilterBar: React.FC<FilterBarProps> = ({
+    search,
+    setSearch,
+    category,
+    setCategory,
+    subcategory,
+    setSubcategory,
+    sort,
+    setSort,
+    categories,
+    subcategories,
+    onClear,
 }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const selectedLabel = options.find((opt) => opt.value === value)?.label || label;
+    return (
+        <div className="flex flex-wrap items-center justify-between gap-3  p-4 rounded-2xl shadow-sm  ">
+            <div className="flex flex-wrap gap-3 items-center">
+                <TextField
+                    size="small"
+                    // variant="c"
+                    placeholder="Search product..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="w-[300px] bg-white rounded-4xl "
+                    sx={{ borderRadius: "40px" }}
+                />
 
-  return (
-    <div className="relative">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-50 transition-all"
-      >
-        <span className="text-sm font-medium text-gray-700">{selectedLabel}</span>
-        <ChevronDown size={16} className="text-gray-400" />
-      </button>
+                <TextField
+                    select
+                    size="small"
+                    label="Category"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="w-[260px]"
+                >
+                    <MenuItem value="">All</MenuItem>
+                    {categories.map((cat, i) => (
+                        <MenuItem key={i} value={cat}>
+                            {cat}
+                        </MenuItem>
+                    ))}
+                </TextField>
 
-      {isOpen && (
-        <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
-          {options.map((option) => (
-            <button
-              key={option.value}
-              onClick={() => {
-                onChange(option.value);
-                setIsOpen(false);
-              }}
-              className={`w-full text-left px-4 py-2 text-sm transition-all ${
-                value === option.value
-                  ? 'bg-indigo-50 text-indigo-600 font-medium'
-                  : 'text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              {option.label}
-            </button>
-          ))}
+                <TextField
+                    select
+                    size="small"
+                    label="Subcategory"
+                    value={subcategory}
+                    onChange={(e) => setSubcategory(e.target.value)}
+                    className="w-[260px]"
+                >
+                    <MenuItem value="">All</MenuItem>
+                    {subcategories.map((sub, i) => (
+                        <MenuItem key={i} value={sub}>
+                            {sub}
+                        </MenuItem>
+                    ))}
+                </TextField>
+
+                <TextField
+                    select
+                    size="small"
+                    label="Sort by"
+                    value={sort}
+                    onChange={(e) => setSort(e.target.value)}
+                    className="w-[250px]"
+                >
+                    <MenuItem value="name">Name</MenuItem>
+                    <MenuItem value="category">Category</MenuItem>
+                    <MenuItem value="variantCount">Variants</MenuItem>
+                </TextField>
+            </div>
+
+            <div className="flex gap-2">
+                <Button
+                    variant="contained"
+                    color="primary"
+                    startIcon={<Filter size={16} />}
+                    className="!bg-indigo-600 !text-white !rounded-xl"
+                >
+                    Refresh
+                </Button>
+                <Button
+                    variant="contained"
+                    color="error"
+                    className=" bg-red-500 !text-white !normal-case !rounded-xl !px-6"
+                >
+                    Add Product
+                </Button>
+            </div>
         </div>
-      )}
-    </div>
-  );
+    );
 };
+
+export default FilterBar;
