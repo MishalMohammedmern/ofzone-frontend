@@ -44,13 +44,14 @@ const FilterBar: React.FC<FilterBarProps> = ({
     const handleOpen = (type: 'product' | 'variant' | 'offer') => {
         setModalType(type);
         setOpen(true);
-        
+
     };
 
     const handleClose = () => {  
         setOpen(false);
         setModalType(null);
     };
+    
 
     return (
         <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl shadow-sm">
