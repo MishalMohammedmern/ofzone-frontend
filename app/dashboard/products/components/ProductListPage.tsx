@@ -3,21 +3,17 @@
 import React, { useEffect, useState } from 'react';
 import { ProductTable } from '@/app/components/dashboard/Table';
 import PaginationControls from '@/app/components/dashboard/PaginationControls';
-import { Button } from '@/components/ui/button';
-import { Product, Variant } from '@/lib/type';
+import { Product } from '@/lib/type';
+import { usePagination } from '@/hooks/usePagination';
 
 
 
 export default function ProductListPage() {
     const [products, setProducts] = useState<Product[]>([]);
-    const [variants, setVariants] = useState<Variant[]>([]);
-    const [viewVariant, setViewVariant] = useState<string | null>(null);
-    const [viewMode, setViewMode] = useState<"product" | "variant">("product");
 
 
-    // pagination state
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 10;
+
+
 
     useEffect(() => {
         const dummyProducts: Product[] = [
@@ -45,19 +41,11 @@ export default function ProductListPage() {
         setProducts(dummyProducts);
     }, []);
 
-    const totalPages = Math.ceil(products.length / itemsPerPage);
-    const paginatedProducts = products.slice(
-        (currentPage - 1) * itemsPerPage,
-        currentPage * itemsPerPage
-    );
-    const handleViewVariants = (product: Product) => {
-        setViewVariant(product.id);
-        setViewMode("variant"); // <-- switch mode
-        setVariants([
-            { id: "v1", name: "Black 128GB", description: "Mid range", price: 1200, color: "Black", material: "Aluminum" },
-            { id: "v2", name: "Silver 256GB", description: "High-end", price: 1400, color: "Silver", material: "Aluminum" },
-        ]);
-    };
+
+      const { currentPage, totalPages, paginatedData, setCurrentPage } = usePagination(products, 10);
+
+  
+ 
 
 
     return (
@@ -66,43 +54,25 @@ export default function ProductListPage() {
 
 
                 <div className="flex-1 overflow-hidden">
-                    {viewMode === 'product' ? (
                         <ProductTable
-                            data={paginatedProducts} // <-- only current page items
+                            data={paginatedData} // <-- only current page items
                             type="product"
                             onAdd={() => alert('Add Product')}
                             onEdit={(p) => alert(`Edit Product: ${p.name}`)}
                             onDelete={(p) => alert(`Delete Product: ${p.name}`)}
-                            onViewVariant={handleViewVariants}
                         />
 
-
-                    ) : (
-                        <ProductTable
-                            data={variants} // <-- use state
-                            type="variant"
-                            onAdd={() => alert('Add Variant')}
-                            onEdit={(v) => alert(`Edit Variant: ${v.name}`)}
-                            onDelete={(v) => alert(`Delete Variant: ${v.name}`)}
-                        />
-                    )}
                 </div>
             </div>
-            {!viewVariant && (
                 <PaginationControls
                     currentPage={currentPage}
                     totalPages={totalPages}
                     onPageChange={setCurrentPage}
                 />
 
-            )}
+         
 
-            {/* Add Variant Button */}
-            {viewVariant && (
-                <div className="flex justify-end mt-6">
-                    <Button>Add Variant</Button>
-                </div>
-            )}
+          
         </div>
     );
 }

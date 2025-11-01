@@ -30,6 +30,8 @@ interface ProductTableProps {
   onDelete?: (item: Product) => void;
   onViewVariant?: (item: Product) => void;
   onAdd?: () => void;
+  buttonLabel?: string;
+  buttonType?: 'product' | 'variant' | 'offer';
 }
 
 export const ProductTable: React.FC<ProductTableProps> = ({
@@ -38,6 +40,8 @@ export const ProductTable: React.FC<ProductTableProps> = ({
   onDelete,
   onViewVariant,
   onAdd,
+  buttonLabel,
+  buttonType,
 }) => {
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('');
@@ -90,6 +94,8 @@ export const ProductTable: React.FC<ProductTableProps> = ({
           setSubcategory('');
           setSort('name');
         }}
+        buttonLabel={buttonLabel}
+        buttonType={buttonType}
       />
 
 
