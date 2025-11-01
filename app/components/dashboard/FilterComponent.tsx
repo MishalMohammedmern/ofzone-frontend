@@ -51,10 +51,11 @@ const FilterBar: React.FC<FilterBarProps> = ({
         setOpen(false);
         setModalType(null);
     };
-    
+
 
     return (
         <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl shadow-sm">
+            
             {/* Filters */}
             <div className="flex flex-wrap gap-3 items-center">
                 <TextField
